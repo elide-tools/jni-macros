@@ -251,7 +251,7 @@ mod tests {
             }
         };
 
-        let expanded = jni_fn2(attr.into(), source.into());
+        let expanded = jni_fn2(attr, source);
 
         assert_eq!(
             format!("{}", expanded),
@@ -279,7 +279,7 @@ mod tests {
             }
         };
 
-        let expanded = jni_fn2(attr.into(), source.into());
+        let expanded = jni_fn2(attr, source);
 
         assert_eq!(
             format!("{}", expanded),
@@ -306,7 +306,7 @@ mod tests {
             }
         };
 
-        let expanded = jni_fn2(attr.into(), source.into());
+        let expanded = jni_fn2(attr, source);
 
         assert_eq!(
             format!("{}", expanded),
@@ -328,7 +328,7 @@ mod tests {
             }
         };
 
-        let expanded = jni_fn2(attr.into(), source.into());
+        let expanded = jni_fn2(attr, source);
 
         assert_eq!(
             format!("{}", expanded),
@@ -350,7 +350,7 @@ mod tests {
             }
         };
 
-        let expanded = jni_fn2(attr.into(), source.into());
+        let expanded = jni_fn2(attr, source);
 
         assert_eq!(
             format!("{}", expanded),
@@ -372,7 +372,7 @@ mod tests {
             }
         };
 
-        let expanded = jni_fn2(attr.into(), source.into());
+        let expanded = jni_fn2(attr, source);
 
         assert_eq!(
             format!("{}", expanded),
@@ -394,7 +394,7 @@ mod tests {
             }
         };
 
-        let expanded = jni_fn2(attr.into(), source.into());
+        let expanded = jni_fn2(attr, source);
 
         assert_eq!(
             format!("{}", expanded),
