@@ -98,15 +98,17 @@ fn jni_fn2(attr: TokenStream, item: TokenStream) -> TokenStream {
         pound_token: Default::default(),
         style: syn::AttrStyle::Outer,
         bracket_token: Default::default(),
-        path: syn::parse_str("no_mangle").unwrap(),
-        tokens: TokenStream::new(),
+        meta: syn::Meta::Path(syn::parse_str("no_mangle").unwrap()),
     });
     function.attrs.push(syn::Attribute {
         pound_token: Default::default(),
         style: syn::AttrStyle::Outer,
         bracket_token: Default::default(),
-        path: syn::parse_str("allow").unwrap(),
-        tokens: quote::quote! { (non_snake_case) },
+        meta: syn::Meta::List(syn::MetaList {
+            path: syn::parse_str("allow").unwrap(),
+            delimiter: syn::MacroDelimiter::Paren(Default::default()),
+            tokens: quote::quote! { non_snake_case },
+        }),
     });
 
     if function.sig.abi.is_some() {
@@ -311,7 +313,7 @@ mod tests {
             format!(
                 "{}",
                 quote::quote! {
-                    compile_error! { "The `jni_fn` attribute can only be applied to `fn` items" }
+                    ::core::compile_error! { "The `jni_fn` attribute can only be applied to `fn` items" }
                 }
             )
         );
@@ -333,7 +335,7 @@ mod tests {
             format!(
                 "{}",
                 quote::quote! {
-                    compile_error! { "The `jni_fn` attribute must have a single string literal supplied to specify the namespace" }
+                    ::core::compile_error! { "The `jni_fn` attribute must have a single string literal supplied to specify the namespace" }
                 }
             )
         );
@@ -355,7 +357,7 @@ mod tests {
             format!(
                 "{}",
                 quote::quote! {
-                    compile_error! { "Invalid package namespace supplied to `jni_fn` attribute" }
+                    ::core::compile_error! { "Invalid package namespace supplied to `jni_fn` attribute" }
                 }
             )
         );
@@ -377,7 +379,7 @@ mod tests {
             format!(
                 "{}",
                 quote::quote! {
-                    compile_error! { "Don't specify an ABI for `jni_fn` attributed functions - the correct ABI will be added automatically" }
+                    ::core::compile_error! { "Don't specify an ABI for `jni_fn` attributed functions - the correct ABI will be added automatically" }
                 }
             )
         );
@@ -399,7 +401,7 @@ mod tests {
             format!(
                 "{}",
                 quote::quote! {
-                    compile_error! { "`jni_fn` attributed functions must have public visibility (`pub`)" }
+                    ::core::compile_error! { "`jni_fn` attributed functions must have public visibility (`pub`)" }
                 }
             )
         );
