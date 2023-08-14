@@ -188,7 +188,10 @@ fn valid_namespace(namespace: &str) -> bool {
 /// then dot separators need to be turned into underscores. Scala may use dollar signs in class
 /// names; those also need to be converted to `_00024`.
 fn create_jni_fn_name(namespace: &str, fn_name: &str) -> String {
-    let namespace_underscored = namespace.replace('_', "_1").replace('.', "_").replace('$', "_00024");
+    let namespace_underscored = namespace
+        .replace('_', "_1")
+        .replace('.', "_")
+        .replace('$', "_00024");
     let fn_name_underscored = fn_name.replace('_', "_1");
     format!("Java_{}_{}", namespace_underscored, fn_name_underscored)
 }
@@ -219,10 +222,7 @@ mod tests {
             "Java_org_signal_client_internal_Native_IdentityKeyPair_1Deserialize"
         );
         assert_eq!(
-            create_jni_fn_name(
-                "a.b.c.Test$",
-                "show"
-            ),
+            create_jni_fn_name("a.b.c.Test$", "show"),
             "Java_a_b_c_Test_00024_show"
         );
     }
