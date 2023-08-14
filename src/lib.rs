@@ -23,13 +23,13 @@ use syn::spanned::Spanned;
 /// use jni_fn::jni_fn;
 ///
 /// #[jni_fn("com.example.RustBindings")]
-/// pub fn sayHello(env: JNIEnv, _: JClass, name: JString) -> jstring {
-///     let name_javastr = env.get_string(name).unwrap();
+/// pub fn sayHello(mut env: JNIEnv, _: JClass, name: JString) -> jstring {
+///     let name_javastr = env.get_string(&name).unwrap();
 ///     let name = name_javastr.to_str().unwrap();
 ///
 ///     env.new_string(format!("Hello, {}!", name))
 ///         .expect("Couldn't create java string!")
-///         .into_inner()
+///         .into_raw()
 /// }
 /// ```
 ///
