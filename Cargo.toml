@@ -1,7 +1,7 @@
 [package]
-name = "jni_fn"
-version = "0.1.2"
-authors = ["Anton Lazarev <https://antonok.com>"]
+name = "java_native"
+version = "0.1.3"
+authors = ["Sam Gammon <https://elide.dev>", "Anton Lazarev <https://antonok.com>"]
 edition = "2021"
 description = "JNI-compatible method signature generator"
 repository = "https://gitlab.com/antonok/jni_fn"
@@ -20,3 +20,4 @@ proc-macro2 = "1.0"
 
 [dev-dependencies]
 jni = "0.21"
+jni-sys = "0.4.0"
